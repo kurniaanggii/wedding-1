@@ -107,51 +107,74 @@ document.addEventListener("DOMContentLoaded", function () {
   // Adjust on window resize
   window.addEventListener("resize", adjustLayout);
 
-  // PERBAIKAN COUNTDOWN: Pastikan ini berjalan dengan benar
-  const countdownElement = document.getElementById("countdown");
-  if (countdownElement) {
-    const weddingDate = new Date("January 20, 2025 08:00:00").getTime();
+  // PERBAIKAN COUNTDOWN
+  // Deklarasikan variabel timer di luar fungsi
+  let countdownTimer;
 
-    // Panggil sekali agar countdown langsung tampil
-    updateCountdown();
+  function updateCountdown() {
+    const weddingDate = new Date("June 22, 2025 08:00:00").getTime(); // Sesuai dengan tanggal di HTML
+    const now = new Date().getTime();
+    const distance = weddingDate - now;
 
-    // Set interval untuk memperbarui setiap detik
-    const countdown = setInterval(updateCountdown, 1000);
+    // Time calculations
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor(
+      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+    );
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = weddingDate - now;
+    // Debug: Tampilkan di console untuk pengecekan
+    console.log("Countdown elemen:", document.getElementById("days"));
+    console.log(`Countdown values: ${days}d ${hours}h ${minutes}m ${seconds}s`);
 
-      // Time calculations
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor(
-        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-      );
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      // Format time to always have 2 digits
-      const formatTime = (time) => (time < 10 ? `0${time}` : time);
-
-      // Update countdown if elements exist
+    // Update countdown elements dengan cara yang lebih agresif
+    try {
       const daysElement = document.getElementById("days");
       const hoursElement = document.getElementById("hours");
       const minutesElement = document.getElementById("minutes");
       const secondsElement = document.getElementById("seconds");
 
-      if (daysElement) daysElement.textContent = formatTime(days);
-      if (hoursElement) hoursElement.textContent = formatTime(hours);
-      if (minutesElement) minutesElement.textContent = formatTime(minutes);
-      if (secondsElement) secondsElement.textContent = formatTime(seconds);
+      if (daysElement) {
+        daysElement.textContent = days < 10 ? `0${days}` : `${days}`;
+        console.log("Days updated:", daysElement.textContent);
+      } else {
+        console.warn("Element 'days' not found");
+      }
+
+      if (hoursElement) {
+        hoursElement.textContent = hours < 10 ? `0${hours}` : `${hours}`;
+      }
+
+      if (minutesElement) {
+        minutesElement.textContent =
+          minutes < 10 ? `0${minutes}` : `${minutes}`;
+      }
+
+      if (secondsElement) {
+        secondsElement.textContent =
+          seconds < 10 ? `0${seconds}` : `${seconds}`;
+      }
 
       // If the countdown is over
       if (distance < 0) {
-        clearInterval(countdown);
-        countdownElement.innerHTML =
-          "<div class='expired'>Acara telah dimulai!</div>";
+        const countdownElement = document.getElementById("countdown");
+        clearInterval(countdownTimer);
+        if (countdownElement) {
+          countdownElement.innerHTML =
+            "<div class='expired'>Acara telah dimulai!</div>";
+        }
       }
+    } catch (error) {
+      console.error("Error updating countdown:", error);
     }
   }
+
+  // Panggil sekali agar countdown langsung tampil
+  setTimeout(updateCountdown, 500); // Tambahkan delay kecil
+
+  // Set interval untuk memperbarui setiap detik
+  countdownTimer = setInterval(updateCountdown, 1000);
 
   // Copy account number functionality
   const copyButtons = document.querySelectorAll(".copy-btn");
