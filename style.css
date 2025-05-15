@@ -88,7 +88,7 @@ body {
   height: auto;
   overflow: visible; /* Ubah dari hidden ke visible */
   background-size: cover;
-  background-position: center; */
+  background-position: center;
   justify-content: center; /* Pusatkan vertikal */
   padding: 2rem 1rem;
 }
@@ -242,7 +242,7 @@ body {
 
 .ornament-top {
   /* contoh */
-  border-top: 2px solid #e8d5c0;
+  border-top: 2px solid #ff8801;
   width: 80px;
   margin: 0 auto 24px auto;
 }
@@ -1035,3 +1035,211 @@ body {
   display: flex;
   animation: fadeIn 0.5s ease-in-out;
 }
+
+
+/* Cover Section Styles */
+            .cover-section {
+                background-color: #f9f5f0;
+                padding: 40px 0;
+                text-align: center;
+                position: relative;
+                overflow: hidden;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .wedding-title {
+                font-family: 'Playfair Display', serif;
+                font-size: 1.5rem;
+                color: #5a4a3a;
+                margin-bottom: 20px;
+                letter-spacing: 3px;
+                position: relative;
+                z-index: 2;
+            }
+
+            .couple-photo-frame {
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                overflow: hidden;
+                margin: 0 auto 30px;
+                border: 5px solid #c9b6a3;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                position: relative;
+                z-index: 2;
+            }
+
+            .couple-photo {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .couple-names {
+                font-family: 'Playfair Display', serif;
+                font-size: 2.5rem;
+                font-weight: 700;
+                color: #3a2c1d;
+                margin-bottom: 15px;
+                position: relative;
+                z-index: 2;
+            }
+
+            .wedding-date {
+                font-family: 'Montserrat', sans-serif;
+                font-size: 1rem;
+                letter-spacing: 3px;
+                color: #5a4a3a;
+                margin-bottom: 40px;
+                position: relative;
+                z-index: 2;
+            }
+
+/* Container for decorative elements */
+.decorative-elements {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Landscape as full background */
+.landscape {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 80%;
+  z-index: 0;
+  object-fit: cover;
+}
+
+/* Peacock decoration - positioned at bottom right corner */
+.peacock {
+  position: absolute;
+  width: clamp(280px, 38vw, 480px); /* Further increased size */
+  bottom: 0;
+  right: 0;
+  opacity: 1;
+  z-index: 1;
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+  /* Ensure it stays in the exact corner */
+  margin: 0;
+}
+
+/* Flowers left - positioned at top left corner */
+.flowers-left {
+  position: absolute;
+  width: clamp(180px, 30vw, 350px); /* Increased size */
+  top: 0;
+  left: 0;
+  opacity: 0.75;
+  z-index: 1;
+  transition: all 0.3s ease;
+  /* Ensure it stays in the exact corner */
+  margin: 0;
+}
+
+/* Flowers right - positioned at top right corner */
+.flowers-right {
+  position: absolute;
+  width: clamp(150px, 26vw, 300px); /* Increased size */
+  top: 0;
+  right: 0;
+  opacity: 0.75;
+  z-index: 1;
+  transform: rotate(5deg);
+  transition: all 0.3s ease;
+  /* Ensure it stays in the exact corner */
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .peacock {
+    width: clamp(200px, 48vw, 280px); /* Increased size */
+    /* Reset any potential positioning issues on mobile */
+    bottom: 0;
+    right: 0;
+    margin: 0;
+  }
+  
+  .flowers-left {
+    width: clamp(140px, 38vw, 230px); /* Increased size */
+    top: 0;
+    left: 0;
+    margin: 0;
+  }
+  
+  .flowers-right {
+    width: clamp(120px, 35vw, 210px); /* Increased size */
+    top: 0;
+    right: 0;
+    margin: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .peacock {
+    width: clamp(300px, 36vw, 480px); /* Increased size */
+  }
+  
+  .flowers-left {
+    width: clamp(240px, 27vw, 380px); /* Increased size */
+  }
+  
+  .flowers-right {
+    width: clamp(220px, 24vw, 350px); /* Increased size */
+  }
+}
+
+@media (min-width: 1200px) {
+  .peacock {
+    width: 480px; /* Increased size */
+  }
+  
+  .flowers-left {
+    width: 300px; /* Increased size */
+  }
+  
+  .flowers-right {
+    width: 250px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .peacock {
+    width: 200px;
+    right: 10%;
+  }
+  
+  .flowers-left {
+    left: 5%;
+  }
+  
+  .flowers-right {
+    right: 5%;
+  }
+}
+
+            /* Media queries */
+            @media (max-width: 768px) {
+                .couple-names {
+                    font-size: 2rem;
+                }
+                
+                
+                .couple-photo-frame {
+                    width: 150px;
+                    height: 150px;
+                }
+            }
