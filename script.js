@@ -69,6 +69,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (audioControl) {
           audioControl.classList.add("playing");
+          audioControl.classList.add("show-audio-control"); // Show the audio control
           isPlaying = true;
         }
       }
@@ -121,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
   let countdownTimer;
 
   function updateCountdown() {
-    const weddingDate = new Date("June 22, 2025 08:00:00").getTime(); // Sesuai dengan tanggal di HTML
+    const weddingDate = new Date("June 22, 2025 09:00:00").getTime(); // Sesuai dengan tanggal di HTML
     const now = new Date().getTime();
     const distance = weddingDate - now;
 

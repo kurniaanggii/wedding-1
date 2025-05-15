@@ -214,17 +214,118 @@ body {
 
 /* Section Styles */
 .content-section {
-  background-color: var(--white);
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
   padding: 2rem;
-  margin-bottom: 2rem;
   text-align: center;
+  position: relative;
+  overflow: hidden;
 }
 
+.content-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.15;
+  z-index: 0;
+}
+
+.content-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Custom section styles */
+.intro-section {
+  background-image: url("assets/art/5.webp");
+  background-size: cover;
+  min-height: 130vh;
+}
+.intro-section::before {
+  background-color: var(--white);
+  opacity: 0.7;
+}
+.schedule-section {
+  background-image: url("assets/art/6.webp");
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.venue-section {
+  background-color: #f5f9f0;
+}
+.venue-section::before {
+  background-image: url("assets/images/bg-venue.jpg");
+}
+
+.gallery-section {
+  background-color: #f9f0f5;
+}
+.gallery-section::before {
+  background-image: url("assets/images/bg-gallery.jpg");
+}
+
+.gift-section {
+  background-color: #f0f9f5;
+}
+.gift-section::before {
+  background-image: url("assets/images/bg-gift.jpg");
+}
+
+.wishes-section {
+  background-color: #f5f0f9;
+}
+.wishes-section::before {
+  background-image: url("assets/images/bg-wishes.jpg");
+}
+
+.closing-section {
+  background-image: url("assets/images/co.jpg");
+  background-size: cover;
+  min-height: 100vh;
+}
+.closing-section::before {
+  background-color: var(--white);
+  opacity: 0.5;
+}
+
+/* Card styles for different content types */
+.content-card {
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.content-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Different card styles */
+.card-primary {
+  border-top: 3px solid var(--primary-color);
+}
+
+.card-secondary {
+  border-top: 3px solid var(--secondary-color);
+}
+
+.card-accent {
+  border-top: 3px solid #ff6b8b;
+}
+
+/* Section title styles */
 .section-title {
   font-family: "Playfair Display", serif;
-  font-size: 1.8rem;
+  font-size: 2rem;
   color: var(--primary-color);
   margin-bottom: 1.5rem;
   position: relative;
@@ -242,22 +343,37 @@ body {
   background-color: var(--secondary-color);
 }
 
-.ornament-top {
-  /* contoh */
-  border-top: 2px solid #ff8801;
-  width: 80px;
-  margin: 0 auto 24px auto;
+/* Section dividers */
+.section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+.divider-line {
+  height: 1px;
+  width: 30%;
+  background-color: var(--secondary-color);
+}
+
+.divider-icon {
+  margin: 0 10px;
+  color: var(--primary-color);
+  font-size: 1.2rem;
 }
 
 /* Couple Section */
 .bismillah {
+  font-weight: 600;
   font-size: 2rem;
   color: var(--primary-color);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .arabic-text {
-  font-size: 1.3rem;
+  font-weight: 600;
+  font-size: 2rem;
   margin-bottom: 1rem;
   color: var(--primary-color);
 }
@@ -269,12 +385,16 @@ body {
 
 /* Couple Portrait */
 .couple-portrait {
-  width: 180px;
-  height: 180px;
+  width: 250px;
+  height: 350px;
   border-radius: 50%;
+  border-top-left-radius: 1%;
+  border-top-right-radius: 30%;
+  border-bottom-right-radius: 1%;
+  border-bottom-left-radius: 30%;
   overflow: hidden;
   margin: 0 auto 1.5rem;
-  border: 5px solid var(--white);
+  border: 5px solid rgb(246, 206, 221);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -299,47 +419,28 @@ body {
 
 /* Couple Profiles */
 .profile-card {
+  margin-top: 3rem;
   margin-bottom: 2rem;
 }
 
-.profile-photo {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin: 0 auto 1rem;
-  border: 3px solid var(--secondary-color);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.profile-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .profile-connector {
-  font-size: 2rem;
+  font-size: 3.5rem;
   color: var(--primary-color);
-  margin: 1.5rem 0;
+  margin: 1.5rem;
+  font-weight: 600;
   font-family: "Playfair Display", serif;
 }
 
 .profile-card h3 {
-  font-family: "Playfair Display", serif;
   color: var(--primary-color);
-  font-size: 1.5rem;
+  font-size: 2rem;
   margin-bottom: 0.5rem;
 }
 
-.social-link a {
-  color: var(--primary-color);
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.social-link a:hover {
-  color: var(--secondary-color);
+.profile-card p {
+  font-size: 1.3rem;
+  color: var(--light-text);
+  margin-bottom: 0.5rem;
 }
 
 /* Countdown */
@@ -378,7 +479,9 @@ body {
 }
 
 .event-card {
-  background-color: var(--white);
+  background-image: url("assets/art/8.webp");
+  background-size: cover;
+  min-height: 100vh;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
   border-radius: 10px;
@@ -386,6 +489,7 @@ body {
 }
 
 .event-icon {
+  margin-top: 17rem;
   font-size: 2rem;
   color: var(--primary-color);
   margin-bottom: 1rem;
@@ -394,45 +498,28 @@ body {
 .event-card h3 {
   font-family: "Playfair Display", serif;
   color: var(--primary-color);
-  margin-bottom: 0.5rem;
-  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
 }
 
 .event-date,
 .event-time {
   font-weight: 500;
-  margin-bottom: 0.3rem;
+  margin-bottom: 1rem;
   color: var(--primary-color);
+  font-size: 1 rem;
 }
 
 .event-location {
   font-weight: 700;
-  margin-bottom: 0.3rem;
+  margin-bottom: 1rem;
+  font-size: 1rem;
 }
 
 .event-address {
   color: var(--light-text);
   margin-bottom: 1rem;
-}
-
-.add-calendar {
-  margin-top: 1.5rem;
-}
-
-.calendar-btn {
-  display: inline-block;
-  padding: 0.8rem 1.5rem;
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
-  text-decoration: none;
-  border-radius: 30px;
-  transition: all 0.3s;
-  font-weight: 500;
-}
-
-.calendar-btn:hover {
-  background-color: var(--primary-color);
-  color: var(--white);
+  font-size: 1rem;
 }
 
 /* Venue Section */
@@ -632,8 +719,11 @@ body {
 .thank-you {
   font-family: "Playfair Display", serif;
   font-size: 2rem;
-  color: var(--primary-color);
+  font-weight: 600;
+  color: rgb(0, 0, 0);
+  text-shadow: #020101;
   margin-bottom: 1.5rem;
+  margin-top: 30rem;
 }
 
 .closing {
@@ -649,7 +739,7 @@ body {
 
 /* Active States */
 .show-content {
-  display: block;
+  display: contents;
   opacity: 1;
 }
 
@@ -703,13 +793,17 @@ body {
   height: 40px;
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 50%;
-  display: flex;
+  display: none; /* Hidden by default */
   justify-content: center;
   align-items: center;
   cursor: pointer;
   z-index: 1000;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
+}
+
+.audio-control.show-audio-control {
+  display: flex; /* This class will make it visible */
 }
 
 .audio-control.playing {
@@ -870,22 +964,18 @@ body {
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  margin: 0 auto;
-  max-width: 100%;
 }
 
-/* Content wrapper for better control */
+/* Content wrapper to ensure proper spacing */
 .cover-section .content-wrapper {
   position: relative;
   z-index: 3;
-  padding: 20px;
   width: 100%;
   max-width: 600px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 0 auto;
 }
 
 .wedding-title {
@@ -896,12 +986,12 @@ body {
   letter-spacing: 3px;
   position: relative;
   z-index: 2;
-  text-align: center;
+  width: 100%;
 }
 
 .couple-photo-frame {
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 330px;
   border-radius: 50%;
   overflow: hidden;
   margin: 0 auto 30px;
@@ -910,7 +1000,6 @@ body {
   position: relative;
   z-index: 2;
 }
-
 .couple-photo {
   width: 100%;
   height: 100%;
@@ -925,7 +1014,7 @@ body {
   margin-bottom: 15px;
   position: relative;
   z-index: 2;
-  text-align: center;
+  width: 100%;
 }
 
 .wedding-date {
@@ -936,10 +1025,10 @@ body {
   margin-bottom: 40px;
   position: relative;
   z-index: 2;
-  text-align: center;
+  width: 100%;
 }
 
-/* Container for decorative elements */
+/* Fix decorative elements positioning for different screen sizes */
 .decorative-elements {
   position: absolute;
   width: 100%;
@@ -963,99 +1052,196 @@ body {
   object-fit: cover;
 }
 
-/* Ensure the decorative elements are properly positioned */
+/* Peacock decoration - positioned at bottom right corner */
 .peacock {
   position: absolute;
-  width: clamp(280px, 38vw, 480px);
+  width: 200px;
   bottom: 0;
   right: 0;
   opacity: 1;
   z-index: 1;
-  transform: translateX(0);
+  transition: all 0.3s ease;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+  margin: 0;
 }
 
+/* Flowers left - positioned at top left corner */
 .flowers-left {
   position: absolute;
-  width: clamp(180px, 30vw, 350px);
+  width: 180px;
   top: 0;
   left: 0;
   opacity: 0.75;
   z-index: 1;
-  transform: translateX(0);
+  transition: all 0.3s ease;
+  margin: 0;
 }
 
+/* Flowers right - positioned at top right corner */
 .flowers-right {
   position: absolute;
-  width: clamp(150px, 26vw, 300px);
+  width: 150px;
   top: 0;
   right: 0;
   opacity: 0.75;
   z-index: 1;
-  transform: translateX(0);
+  transition: all 0.3s ease;
+  margin: 0;
 }
 
-/* Media queries for responsive adjustments */
+/* Replace all existing media queries for these elements with these simpler ones */
 @media (max-width: 768px) {
-  .cover-section {
-    padding: 40px 15px;
-  }
-
-  .couple-photo-frame {
-    width: 150px;
-    height: 150px;
-    margin-bottom: 20px;
-  }
-
-  .couple-names {
-    font-size: 2rem;
-    margin-bottom: 10px;
-  }
-
-  .wedding-title {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-  }
-
-  .wedding-date {
-    font-size: 0.9rem;
-    margin-bottom: 20px;
-  }
-
   .peacock {
-    width: clamp(200px, 48vw, 280px);
+    width: 230px;
   }
 
   .flowers-left {
-    width: clamp(140px, 38vw, 230px);
+    width: 230px;
   }
 
   .flowers-right {
-    width: clamp(120px, 35vw, 210px);
+    width: 150px;
   }
 }
 
-@media (min-width: 769px) and (max-width: 1024px) {
-  .cover-section {
-    padding: 60px 30px;
+@media (min-width: 769px) and (max-width: 1199px) {
+  .peacock {
+    width: 290px;
+  }
+
+  .flowers-left {
+    width: 290px;
+  }
+
+  .flowers-right {
+    width: 180px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .peacock {
+    width: 300px;
+  }
+
+  .flowers-left {
+    width: 300px;
+  }
+
+  .flowers-right {
+    width: 180px;
+  }
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+  .couple-names {
+    font-size: 2rem;
   }
 
   .couple-photo-frame {
-    width: 180px;
-    height: 180px;
+    width: 210px;
+    height: 290px;
   }
 }
 
-/* Special handling for the invitation content section */
-.invitation-content {
+/* Fix for overflow issues */
+html,
+body {
   overflow-x: hidden;
-  width: 100%;
 }
 
-/* Make sure cover-section has the same width constraints as other content sections */
-.invitation-content .cover-section {
-  max-width: 100%;
-  width: 100%;
+.invitation-content {
+  overflow-x: hidden;
+}
+/* Quran Verse Section */
+.quran-verse-section {
+  padding: 40px 20px;
+  text-align: center;
+  background-image: url("assets/art/2.png");
+  position: relative;
+}
+.quran-verse-section::before {
+  background-color: rgba(255, 255, 255, 0.8);
+  opacity: 0.6;
+}
+
+.verse-container {
+  max-width: 800px;
   margin: 0 auto;
-  /* Ensure it fills the parent container */
-  box-sizing: border-box;
+  background-color: #f6e7e7;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position: relative;
+}
+
+.verse-image {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.verse-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.verse-container:hover .verse-image img {
+  transform: scale(1.05);
+}
+
+.verse-content {
+  padding: 30px 25px;
+  position: relative;
+}
+
+.verse-content:before {
+  content: '"';
+  font-family: "Playfair Display", serif;
+  font-size: 60px;
+  color: rgba(90, 74, 58, 0.1);
+  position: absolute;
+  top: 10px;
+  left: 15px;
+}
+
+.verse-text {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #5a4a3a;
+  margin-bottom: 15px;
+  font-style: italic;
+}
+
+.verse-reference {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  color: #8a7b6d;
+  text-align: center;
+  margin-top: 10px;
+}
+
+@media (min-width: 768px) {
+  .verse-container {
+    display: flex;
+  }
+
+  .verse-image {
+    width: 40%;
+    height: auto;
+  }
+
+  .verse-content {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .verse-text {
+    font-size: 18px;
+  }
 }
