@@ -996,3 +996,19 @@ body {
   flex-grow: 1;
   min-height: 15vh; /* Ruang kosong minimum */
 }
+
+/* Audio Control Default State (hidden) */
+.audio-control {
+  display: none;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  /* ... (other existing styles remain the same) ... */
+}
+
+/* Show only when invitation is opened */
+.invitation-content.show-content ~ .audio-control,
+.invitation-content.show-content + .audio-control {
+  display: flex;
+  animation: fadeIn 0.5s ease-in-out;
+}

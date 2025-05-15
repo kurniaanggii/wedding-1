@@ -42,6 +42,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  openBtn.addEventListener("click", function () {
+    // ... existing code ...
+
+    // Force show audio control
+    if (audioControl) {
+      audioControl.style.display = "flex";
+      audioControl.classList.add("show-audio-control");
+    }
+  });
   // Open invitation button
   if (initialView && invitationContent && openBtn) {
     openBtn.addEventListener("click", function () {
