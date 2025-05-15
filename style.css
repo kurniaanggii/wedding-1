@@ -73,12 +73,12 @@ body {
 
 /* Initial View */
 .initial-view {
-  position: relative;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  min-height: 100vh;
+  position: relative;
   background: url("assets/images/1.jpg") center center/cover no-repeat;
   overflow: hidden;
 }
@@ -88,9 +88,9 @@ body {
   position: absolute;
   inset: 0;
   background: linear-gradient(
-    135deg,
-    rgba(90, 74, 58, 0.7) 0%,
-    rgba(232, 213, 192, 0.3) 100%
+    to top,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.15) 100%
   );
   z-index: 1;
 }
@@ -128,44 +128,54 @@ body {
 
 .text-above {
   font-family: "Playfair Display", serif;
-  font-size: 1.5rem;
+  font-size: 1rem;
+  color: wheat;
+  font-weight: 600;
   letter-spacing: 5px;
-  margin-bottom: 1rem;
   text-transform: uppercase;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  top: 1rem;
 }
 
 .couple-name {
   font-family: "Playfair Display", serif;
   font-size: 3.5rem;
-  margin: 1rem 0;
+  color: wheat;
+  margin-top: 0.5rem;
   line-height: 1.1;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  text-shadow: 1px 1px 3px rgb(0, 0, 0);
+  top: 1rem;
 }
 
 .text-below {
   font-size: 1.1rem;
-  color: var(--light-text);
+  color: wheat;
   letter-spacing: 1px;
-  margin-bottom: 2rem;
+  margin-top: 0.5rem;
+  text-shadow: 1px 1px 3px rgb(0, 0, 0);
+  top: 1rem;
 }
 
 .open-invitation {
-  padding: 0.8rem 2rem;
-  border: 1px solid var(--primary-color);
-  color: var(--primary-color);
-  background: transparent;
+  padding: 1rem 2.5rem;
+  border: none;
+  color: #fff;
+  background: linear-gradient(
+    90deg,
+    var(--primary-color) 60%,
+    var(--secondary-color) 100%
+  );
   font-family: "Montserrat", sans-serif;
-  font-weight: 500;
-  letter-spacing: 1px;
-  margin-top: 2rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  font-size: 1.15rem;
   cursor: pointer;
-  transition: all 0.3s ease;
-  border-radius: 2px;
-}
-
-.open-invitation:hover {
-  background-color: var(--primary-color);
-  color: var(--white);
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+  border-radius: 32px;
+  box-shadow: 0 6px 24px rgba(90, 74, 58, 0.13);
+  align-self: center;
+  margin-top: auto;
+  margin-bottom: 2rem;
 }
 
 /* Invitation Content */
@@ -439,18 +449,28 @@ body {
 }
 
 .cover-couple-name {
-  font-family: "Playfair Display", serif;
+  font-family: "Playfair Display";
   font-size: 3.5rem;
   margin-bottom: 1rem;
   letter-spacing: 2px;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  font-weight: 600; /* sedikit tebal */
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 1.5); /* shadow dipertegas */
+}
+
+.cover-wedding-title {
+  font-family: "Monsterrat";
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 3px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1.5);
 }
 
 .cover-wedding-date {
+  font-family: "Monsterrat";
   font-size: 1.5rem;
   letter-spacing: 3px;
   margin-top: 1rem;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 1.5);
 }
 
 .butterfly-anim {
@@ -475,12 +495,58 @@ body {
   }
 }
 
+/* Invitation Greeting Styles */
 .invitation-greeting {
   color: #fff;
   text-align: center;
-  margin: 1.5rem 0 1rem 0;
-  font-size: 1.1rem;
-  z-index: 2;
+  margin: 15rem 0 1rem 0; /* Ubah angka 4.5rem sesuai kebutuhan turun */
+  font-size: 0.9rem;
   position: relative;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  font-family: "Montserrat", sans-serif;
+  letter-spacing: 1px;
+  opacity: 0;
+  animation: fadeInUp 1s forwards;
+  animation-delay: 0.3s;
+}
+
+/* Guest Name Styling */
+.invitation-greeting .guest {
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 1.3rem;
+  display: block;
+  margin-top: 01rem;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.name-disclaimer {
+  text-align: center;
+  color: #fff;
+  font-size: 0.8rem;
+  margin-bottom: 1.5rem;
+  opacity: 0.85;
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+  font-family: "Montserrat", sans-serif;
+  position: fixed;
+  bottom: 1.5vh;
+  transform: translateX(-50%);
+  z-index: 19;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .invitation-greeting {
+    font-size: 0.8rem;
+  }
+
+  .invitation-greeting .guest {
+    font-size: 1rem;
+  }
+
+  .name-disclaimer {
+    font-size: 0.7rem;
+    bottom: 1vh;
+  }
 }
