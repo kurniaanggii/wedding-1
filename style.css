@@ -23,8 +23,10 @@ body {
 /* Container Styles */
 .container {
   display: flex;
-  height: 100vh;
   position: relative;
+  min-height: 100vh;
+  height: auto;
+  overflow-y: auto;
 }
 
 /* Cover Photo Styles */
@@ -75,24 +77,33 @@ body {
 .initial-view {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  /* justify-content: flex-start; */
   align-items: center;
   min-height: 100vh;
   position: relative;
   background: url("assets/images/1.jpg") center center/cover no-repeat;
   overflow: hidden;
   padding-top: 15vh;
+
+  height: auto;
+  overflow: visible; /* Ubah dari hidden ke visible */
+  background-size: cover;
+  background-position: center; */
+  justify-content: center; /* Pusatkan vertikal */
+  padding: 2rem 1rem;
 }
 
 .initial-view::before {
   content: "";
   position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.5) 0%,
-    rgba(0, 0, 0, 0.15) 100%
-  );
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom, 
+              rgba(0,0,0,0.3) 0%, 
+              rgba(0,0,0,0.1) 50%,
+              rgba(0,0,0,0.3) 100%);
   z-index: 1;
 }
 
@@ -829,7 +840,7 @@ body {
   text-align: center;
   color: #fff;
   font-size: 0.8rem;
-  margin-bottom: 4rem;
+  margin-bottom: 5rem;
   opacity: 0.85;
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
   font-family: "Montserrat", sans-serif;
@@ -845,6 +856,18 @@ body {
 
 /* Responsive Adjustments */
 @media (max-width: 1024px) {
+  .initial-view {
+    padding: 3rem;
+  }
+
+  .couple-name {
+    font-size: 4rem;
+    margin: 1rem 0;
+  }
+
+  .text-below {
+    font-size: 1.5rem;
+  }
   .cover-couple-name {
     font-size: 3rem;
   }
