@@ -991,3 +991,8 @@ body {
     text-align: left;
   }
 }
+
+.spacer {
+  flex-grow: 1;
+  min-height: 15vh; /* Ruang kosong minimum */
+}
