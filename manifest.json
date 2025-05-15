@@ -1,0 +1,21 @@
+{
+  "name": "Undangan Pernikahan Devi & Dede",
+  "short_name": "Undangan Devi & Dede",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f8f3ee",
+  "theme_color": "#5a4a3a",
+  "description": "Undangan pernikahan Devi & Dede - 20 Januari 2025",
+  "icons": [
+    {
+      "src": "assets/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
