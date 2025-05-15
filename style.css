@@ -836,7 +836,6 @@ body {
   font-family: "Montserrat", sans-serif;
   position: fixed;
   bottom: 1.5vh;
-  left: 50%;
   transform: translateX(-50%);
   z-index: 19;
   pointer-events: none;
