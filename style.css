@@ -201,7 +201,7 @@ body {
   display: none;
   opacity: 0;
   transition: opacity 0.5s ease;
-  padding: 1rem 0;
+  padding: 0rem 0;
   margin: 0 auto;
 }
 
@@ -854,273 +854,108 @@ body {
   opacity: 0;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 1024px) {
-  .initial-view {
-    padding: 3rem;
-  }
-
-  .couple-name {
-    font-size: 4rem;
-    margin: 1rem 0;
-  }
-
-  .text-below {
-    font-size: 1.5rem;
-  }
-  .cover-couple-name {
-    font-size: 3rem;
-  }
-
-  .cover-wedding-date {
-    font-size: 1.3rem;
-  }
-}
-
-@media (max-width: 768px) {
-  html,
-  body {
-    width: 100vw;
-    min-height: 100vh;
-    margin: 0;
+/* Updated Cover Section Styles */
+.cover-section {
+    background-color: #f9f5f0;
     padding: 0;
-    overflow-x: hidden;
-  }
-  .container {
-    width: 100vw;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
     min-height: 100vh;
-    margin: 0;
-    padding: 0;
-  }
-  .invitation-wrapper,
-  .initial-view {
-    width: 100vw !important;
-    min-height: 100vh !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    box-sizing: border-box;
-  }
-
-  .invitation-greeting {
-    font-size: 0.8rem;
-  }
-
-  .invitation-greeting .guest {
-    font-size: 1rem;
-  }
-
-  .name-disclaimer {
-    font-size: 0.7rem;
-    bottom: 1vh;
-  }
-
-  .cover-photo {
-    display: none !important;
-  }
-
-  .invitation-wrapper {
     width: 100%;
-    margin-left: 0;
-  }
-
-  .couple-name {
-    font-size: 2.5rem;
-  }
-
-  .cover-couple-name {
-    font-size: 2.5rem;
-  }
-
-  .cover-wedding-date {
-    font-size: 1.2rem;
-  }
-
-  .couple-portrait {
-    width: 150px;
-    height: 150px;
-  }
-
-  .open-invitation {
-    padding: 0.7rem 1.5rem;
-  }
-
-  .invitation-wrapper {
-    padding: 1.5rem;
-  }
-
-  .gallery-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .gallery-item {
-    height: 120px;
-  }
-
-  .countdown-item {
-    min-width: 70px;
-    padding: 0.8rem;
-  }
-}
-
-@media (min-width: 769px) {
-  .cover-photo {
-    display: block;
-  }
-
-  .invitation-wrapper {
-    width: 40%;
-    margin-left: 60%;
-  }
-
-  .couple-name {
-    font-size: 3.5rem;
-  }
-
-  .text-above {
-    font-size: 1.3rem;
-  }
-
-  .invitation-wrapper {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
-  /* Hide scrollbar but keep functionality */
-  .invitation-wrapper::-webkit-scrollbar {
-    display: none;
-  }
-
-  .gallery-grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .gallery-item {
-    height: 150px;
-  }
-
-  .bank-account {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-  }
-
-  .bank-logo {
-    margin-bottom: 0;
-    margin-right: 1rem;
-  }
-
-  .account-details {
-    flex-grow: 1;
-    text-align: left;
-  }
+    justify-content: center;
+    box-sizing: border-box;
 }
 
-.spacer {
-  flex-grow: 1;
-  min-height: 5vh; /* Ruang kosong minimum */
+/* Content wrapper to ensure proper spacing */
+.cover-section .content-wrapper {
+    position: relative;
+    z-index: 3;
+    padding: 20px;
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-/* Audio Control Default State (hidden) */
-.audio-control {
-  display: none;
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  /* ... (other existing styles remain the same) ... */
+.wedding-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: #5a4a3a;
+    margin-bottom: 20px;
+    letter-spacing: 3px;
+    position: relative;
+    z-index: 2;
+    width: 100%;
 }
 
-/* Show only when invitation is opened */
-.invitation-content.show-content ~ .audio-control,
-.invitation-content.show-content + .audio-control {
-  display: flex;
-  animation: fadeIn 0.5s ease-in-out;
+.couple-photo-frame {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 30px;
+    border: 5px solid #c9b6a3;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    position: relative;
+    z-index: 2;
 }
 
+.couple-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-/* Cover Section Styles */
-            .cover-section {
-                background-color: #f9f5f0;
-                padding: 40px 0;
-                text-align: center;
-                position: relative;
-                overflow: hidden;
-                min-height: 100vh;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-            }
+.couple-names {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #3a2c1d;
+    margin-bottom: 15px;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
 
-            .wedding-title {
-                font-family: 'Playfair Display', serif;
-                font-size: 1.5rem;
-                color: #5a4a3a;
-                margin-bottom: 20px;
-                letter-spacing: 3px;
-                position: relative;
-                z-index: 2;
-            }
-
-            .couple-photo-frame {
-                width: 200px;
-                height: 200px;
-                border-radius: 50%;
-                overflow: hidden;
-                margin: 0 auto 30px;
-                border: 5px solid #c9b6a3;
-                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-                position: relative;
-                z-index: 2;
-            }
-
-            .couple-photo {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-
-            .couple-names {
-                font-family: 'Playfair Display', serif;
-                font-size: 2.5rem;
-                font-weight: 700;
-                color: #3a2c1d;
-                margin-bottom: 15px;
-                position: relative;
-                z-index: 2;
-            }
-
-            .wedding-date {
-                font-family: 'Montserrat', sans-serif;
-                font-size: 1rem;
-                letter-spacing: 3px;
-                color: #5a4a3a;
-                margin-bottom: 40px;
-                position: relative;
-                z-index: 2;
-            }
+.wedding-date {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    color: #5a4a3a;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+}
 
 /* Container for decorative elements */
 .decorative-elements {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: 1;
-  overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
 }
 
 /* Landscape as full background */
 .landscape {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  opacity: 80%;
-  z-index: 0;
-  object-fit: cover;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: 80%;
+    z-index: 0;
+    object-fit: cover;
 }
 
 /* Peacock decoration - positioned at bottom right corner */
@@ -1158,7 +993,6 @@ body {
   right: 0;
   opacity: 0.75;
   z-index: 1;
-  transform: rotate(5deg);
   transition: all 0.3s ease;
   /* Ensure it stays in the exact corner */
   margin: 0;
@@ -1243,3 +1077,12 @@ body {
                     height: 150px;
                 }
             }
+
+/* Fix for overflow issues */
+html, body {
+    overflow-x: hidden;
+}
+
+.invitation-content {
+    overflow-x: hidden;
+}
