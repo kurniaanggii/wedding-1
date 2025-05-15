@@ -81,6 +81,7 @@ body {
   position: relative;
   background: url("assets/images/1.jpg") center center/cover no-repeat;
   overflow: hidden;
+  padding-top: 15vh;
 }
 
 .initial-view::before {
@@ -178,6 +179,11 @@ body {
   margin-bottom: 2rem;
 }
 
+.open-invitation:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(90, 74, 58, 0.25);
+}
+
 /* Invitation Content */
 .invitation-content {
   width: 100%;
@@ -186,10 +192,67 @@ body {
   opacity: 0;
   transition: opacity 0.5s ease;
   padding: 1rem 0;
+  margin: 0 auto;
 }
 
 .content-wrapper {
   width: 100%;
+  padding: 0 20px;
+}
+
+/* Section Styles */
+.content-section {
+  background-color: var(--white);
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.section-title {
+  font-family: "Playfair Display", serif;
+  font-size: 1.8rem;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title:after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background-color: var(--secondary-color);
+}
+
+.ornament-top {
+  /* contoh */
+  border-top: 2px solid #e8d5c0;
+  width: 80px;
+  margin: 0 auto 24px auto;
+}
+
+/* Couple Section */
+.bismillah {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+}
+
+.arabic-text {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
+}
+
+.intro-text {
+  margin-bottom: 2rem;
+  line-height: 1.8;
 }
 
 /* Couple Portrait */
@@ -222,6 +285,81 @@ body {
   color: var(--text-color);
 }
 
+/* Couple Profiles */
+.profile-card {
+  margin-bottom: 2rem;
+}
+
+.profile-photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 1rem;
+  border: 3px solid var(--secondary-color);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.profile-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-connector {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin: 1.5rem 0;
+  font-family: "Playfair Display", serif;
+}
+
+.profile-card h3 {
+  font-family: "Playfair Display", serif;
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.social-link a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.social-link a:hover {
+  color: var(--secondary-color);
+}
+
+/* Countdown */
+.countdown {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.countdown-item {
+  background-color: var(--white);
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 0.5rem;
+  min-width: 80px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.countdown-item span:first-child {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  line-height: 1;
+}
+
+.countdown-label {
+  font-size: 0.8rem;
+  color: var(--light-text);
+}
+
 /* Events Section */
 .events {
   margin: 3rem 0;
@@ -231,24 +369,58 @@ body {
   background-color: var(--white);
   padding: 1.5rem;
   margin-bottom: 1.5rem;
-  border-radius: 5px;
+  border-radius: 10px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
 }
 
-.event-card h2 {
+.event-icon {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.event-card h3 {
   font-family: "Playfair Display", serif;
   color: var(--primary-color);
   margin-bottom: 0.5rem;
   font-size: 1.3rem;
 }
 
+.event-date,
 .event-time {
   font-weight: 500;
   margin-bottom: 0.3rem;
+  color: var(--primary-color);
 }
 
 .event-location {
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.event-address {
   color: var(--light-text);
+  margin-bottom: 1rem;
+}
+
+.add-calendar {
+  margin-top: 1.5rem;
+}
+
+.calendar-btn {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+  text-decoration: none;
+  border-radius: 30px;
+  transition: all 0.3s;
+  font-weight: 500;
+}
+
+.calendar-btn:hover {
+  background-color: var(--primary-color);
+  color: var(--white);
 }
 
 /* Venue Section */
@@ -258,18 +430,200 @@ body {
 
 .venue-photo {
   width: 100%;
-  border-radius: 5px;
-  margin-bottom: 0.5rem;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.map-link a {
-  color: var(--primary-color);
+.map-link a,
+.map-button {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background-color: var(--primary-color);
+  color: var(--white);
   text-decoration: none;
+  border-radius: 30px;
+  transition: all 0.3s;
   font-weight: 500;
 }
 
+.map-button:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+/* Gallery Section */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.gallery-item {
+  border-radius: 8px;
+  overflow: hidden;
+  height: 150px;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+/* Gift Section */
+.gift-message {
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.bank-account {
+  background-color: var(--white);
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.bank-logo {
+  margin-bottom: 1rem;
+}
+
+.bank-logo img {
+  height: 40px;
+}
+
+.account-details h4 {
+  margin-bottom: 0.5rem;
+  color: var(--primary-color);
+}
+
+.account-number {
+  font-weight: 700;
+  color: var(--primary-color);
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+}
+
+.account-name {
+  color: var(--light-text);
+  margin-bottom: 1rem;
+}
+
+.copy-btn {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  background-color: var(--primary-color);
+  color: var(--white);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: inherit;
+}
+
+.copy-btn:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+.copy-btn.copied {
+  background-color: #4caf50;
+  color: white;
+}
+
+/* Wishes Section */
+.wishes-form {
+  margin-bottom: 2rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-family: inherit;
+}
+
+.form-group textarea {
+  height: 100px;
+  resize: none;
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-family: inherit;
+  font-weight: 500;
+}
+
+.submit-btn:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+.wishes-list {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.wish-item {
+  background-color: var(--background);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  text-align: left;
+}
+
+.wish-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.wish-name {
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.wish-attendance {
+  font-size: 0.8rem;
+  color: var(--light-text);
+}
+
+.wish-message {
+  color: var(--text-color);
+  font-size: 0.9rem;
+}
+
 /* Closing Section */
+.thank-you {
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: 1.5rem;
+}
+
 .closing {
   font-style: italic;
   margin: 3rem 0;
@@ -279,22 +633,6 @@ body {
 .families {
   margin: 3rem 0;
   font-weight: 500;
-}
-
-/* Back Button */
-.back-btn {
-  margin-top: 2rem;
-  padding: 0.8rem;
-  text-align: center;
-  color: var(--primary-color);
-  cursor: pointer;
-  font-weight: 500;
-}
-
-.back-btn span {
-  display: block;
-  font-size: 1.5rem;
-  margin-bottom: 0.3rem;
 }
 
 /* Active States */
@@ -308,109 +646,78 @@ body {
   opacity: 0;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 1024px) {
-  .cover-couple-name {
-    font-size: 3rem;
-  }
-
-  .cover-wedding-date {
-    font-size: 1.3rem;
-  }
+/* Lightbox Styles */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
-@media (max-width: 768px) {
-  html,
-  body {
-    width: 100vw;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-  }
-  .container {
-    width: 100vw;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;
-  }
-  .invitation-wrapper,
-  .initial-view {
-    width: 100vw !important;
-    min-height: 100vh !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    box-sizing: border-box;
-  }
+.lightbox-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90vh;
 }
 
-@media (min-width: 769px) {
-  .cover-photo {
-    display: block;
-  }
-
-  .invitation-wrapper {
-    width: 40%;
-    margin-left: 60%;
-  }
-
-  .couple-name {
-    font-size: 3.5rem;
-  }
-
-  .text-above {
-    font-size: 1.3rem;
-  }
-
-  .invitation-wrapper {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
-  /* Hide scrollbar but keep functionality */
-  .invitation-wrapper::-webkit-scrollbar {
-    display: none;
-  }
+.close-lightbox {
+  color: white;
+  font-size: 2.5rem;
+  position: absolute;
+  top: -50px;
+  right: 10px;
+  cursor: pointer;
+  z-index: 1001;
 }
 
-/* Mobile Styles */
-@media (max-width: 768px) {
-  .couple-name {
-    font-size: 2.5rem;
-  }
+.lightbox-content img {
+  max-width: 100%;
+  max-height: 80vh;
+  border-radius: 5px;
+}
 
-  .cover-photo {
-    display: none !important;
-  }
+/* Audio Control */
+.audio-control {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
 
-  .invitation-wrapper {
-    width: 100%;
-    margin-left: 0;
-  }
+.audio-control.playing {
+  animation: pulse 1.5s infinite;
+}
 
-  .couple-name {
-    font-size: 2.5rem;
-  }
+.audio-control i {
+  color: var(--primary-color);
+  font-size: 18px;
+}
 
-  .cover-couple-name {
-    font-size: 2.5rem;
+@keyframes pulse {
+  0% {
+    transform: scale(1);
   }
-
-  .cover-wedding-date {
-    font-size: 1.2rem;
+  50% {
+    transform: scale(1.1);
   }
-
-  .couple-portrait {
-    width: 150px;
-    height: 150px;
-  }
-
-  .open-invitation {
-    padding: 0.7rem 1.5rem;
-  }
-
-  .invitation-wrapper {
-    padding: 1.5rem;
+  100% {
+    transform: scale(1);
   }
 }
 
@@ -431,13 +738,6 @@ body {
 .cover-text {
   opacity: 0;
   transition: opacity 0.8s ease;
-}
-
-.container.loaded .cover-text {
-  opacity: 1;
-}
-
-.cover-text {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -446,6 +746,11 @@ body {
   color: white;
   width: 100%;
   padding: 0 20px;
+  z-index: 2;
+}
+
+.container.loaded .cover-text {
+  opacity: 1;
 }
 
 .cover-couple-name {
@@ -453,8 +758,8 @@ body {
   font-size: 3.5rem;
   margin-bottom: 1rem;
   letter-spacing: 2px;
-  font-weight: 600; /* sedikit tebal */
-  text-shadow: 2px 2px 6px rgba(0, 0, 0, 1.5); /* shadow dipertegas */
+  font-weight: 600;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 1.5);
 }
 
 .cover-wedding-title {
@@ -499,7 +804,7 @@ body {
 .invitation-greeting {
   color: #fff;
   text-align: center;
-  margin: 15rem 0 1rem 0; /* Ubah angka 4.5rem sesuai kebutuhan turun */
+  margin: 15rem 0 1rem 0;
   font-size: 0.9rem;
   position: relative;
   z-index: 2;
@@ -517,7 +822,7 @@ body {
   font-weight: 600;
   font-size: 1.3rem;
   display: block;
-  margin-top: 01rem;
+  margin-top: 1rem;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
 }
 
@@ -531,12 +836,50 @@ body {
   font-family: "Montserrat", sans-serif;
   position: fixed;
   bottom: 1.5vh;
+  left: 50%;
   transform: translateX(-50%);
   z-index: 19;
   pointer-events: none;
+  animation: fadeInUp 1s forwards;
+  animation-delay: 1.4s;
+  opacity: 0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+  .cover-couple-name {
+    font-size: 3rem;
+  }
+
+  .cover-wedding-date {
+    font-size: 1.3rem;
+  }
 }
 
 @media (max-width: 768px) {
+  html,
+  body {
+    width: 100vw;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+  .container {
+    width: 100vw;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+  .invitation-wrapper,
+  .initial-view {
+    width: 100vw !important;
+    min-height: 100vh !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box;
+  }
+
   .invitation-greeting {
     font-size: 0.8rem;
   }
@@ -548,5 +891,105 @@ body {
   .name-disclaimer {
     font-size: 0.7rem;
     bottom: 1vh;
+  }
+
+  .cover-photo {
+    display: none !important;
+  }
+
+  .invitation-wrapper {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .couple-name {
+    font-size: 2.5rem;
+  }
+
+  .cover-couple-name {
+    font-size: 2.5rem;
+  }
+
+  .cover-wedding-date {
+    font-size: 1.2rem;
+  }
+
+  .couple-portrait {
+    width: 150px;
+    height: 150px;
+  }
+
+  .open-invitation {
+    padding: 0.7rem 1.5rem;
+  }
+
+  .invitation-wrapper {
+    padding: 1.5rem;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .gallery-item {
+    height: 120px;
+  }
+
+  .countdown-item {
+    min-width: 70px;
+    padding: 0.8rem;
+  }
+}
+
+@media (min-width: 769px) {
+  .cover-photo {
+    display: block;
+  }
+
+  .invitation-wrapper {
+    width: 40%;
+    margin-left: 60%;
+  }
+
+  .couple-name {
+    font-size: 3.5rem;
+  }
+
+  .text-above {
+    font-size: 1.3rem;
+  }
+
+  .invitation-wrapper {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .invitation-wrapper::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .gallery-item {
+    height: 150px;
+  }
+
+  .bank-account {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .bank-logo {
+    margin-bottom: 0;
+    margin-right: 1rem;
+  }
+
+  .account-details {
+    flex-grow: 1;
+    text-align: left;
   }
 }
