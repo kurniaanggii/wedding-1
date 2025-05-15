@@ -135,7 +135,7 @@ body {
   letter-spacing: 5px;
   text-transform: uppercase;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-  top: 1rem;
+  top: 3rem;
 }
 
 .couple-name {
@@ -145,7 +145,7 @@ body {
   margin-top: 0.5rem;
   line-height: 1.1;
   text-shadow: 1px 1px 3px rgb(0, 0, 0);
-  top: 1rem;
+  top: 3rem;
 }
 
 .text-below {
@@ -154,7 +154,7 @@ body {
   letter-spacing: 1px;
   margin-top: 0.5rem;
   text-shadow: 1px 1px 3px rgb(0, 0, 0);
-  top: 1rem;
+  top: 3rem;
 }
 
 .open-invitation {
@@ -175,7 +175,7 @@ body {
   border-radius: 32px;
   box-shadow: 0 6px 24px rgba(90, 74, 58, 0.13);
   align-self: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .open-invitation:hover {
@@ -829,11 +829,11 @@ body {
   text-align: center;
   color: #fff;
   font-size: 0.8rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 4rem;
   opacity: 0.85;
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
   font-family: "Montserrat", sans-serif;
-  position: fixed;
+  position: absolute;
   bottom: 1.5vh;
   transform: translateX(-50%);
   z-index: 19;
