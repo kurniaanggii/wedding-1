@@ -874,7 +874,6 @@ body {
 .cover-section .content-wrapper {
     position: relative;
     z-index: 3;
-    padding: 20px;
     width: 100%;
     max-width: 600px;
     display: flex;
