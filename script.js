@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Open invitation button
-  if (initialView && invitationContent) {
+  if (initialView && invitationContent && openBtn) {
     openBtn.addEventListener("click", function () {
       // Enable scrolling
       document.documentElement.style.overflow = "auto";
@@ -107,12 +107,18 @@ document.addEventListener("DOMContentLoaded", function () {
   // Adjust on window resize
   window.addEventListener("resize", adjustLayout);
 
-  // Countdown timer
+  // PERBAIKAN COUNTDOWN: Pastikan ini berjalan dengan benar
   const countdownElement = document.getElementById("countdown");
   if (countdownElement) {
     const weddingDate = new Date("January 20, 2025 08:00:00").getTime();
 
-    const countdown = setInterval(function () {
+    // Panggil sekali agar countdown langsung tampil
+    updateCountdown();
+
+    // Set interval untuk memperbarui setiap detik
+    const countdown = setInterval(updateCountdown, 1000);
+
+    function updateCountdown() {
       const now = new Date().getTime();
       const distance = weddingDate - now;
 
@@ -144,7 +150,7 @@ document.addEventListener("DOMContentLoaded", function () {
         countdownElement.innerHTML =
           "<div class='expired'>Acara telah dimulai!</div>";
       }
-    }, 1000);
+    }
   }
 
   // Copy account number functionality
@@ -239,77 +245,4 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     });
   });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-  // 1. Tangani tombol buka undangan
-  const openBtn = document.getElementById("openBtn");
-  const initialView = document.getElementById("initialView");
-  const invitationContent = document.getElementById("invitationContent");
-
-  if (openBtn && initialView && invitationContent) {
-    openBtn.addEventListener("click", function () {
-      initialView.style.display = "none";
-      invitationContent.style.display = "block";
-      invitationContent.style.opacity = "1";
-
-      // Coba putar musik
-      const bgMusic = document.getElementById("bgMusic");
-      if (bgMusic) {
-        bgMusic.play().catch((error) => {
-          console.log("Autoplay diblokir:", error);
-        });
-      }
-    });
-  }
-
-  // 2. Countdown timer
-  function updateCountdown() {
-    const weddingDate = new Date("January 20, 2025 08:00:00").getTime();
-    const now = new Date().getTime();
-    const distance = weddingDate - now;
-
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor(
-      (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-    );
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-    // Update elemen HTML jika ada
-    const daysElement = document.getElementById("days");
-    const hoursElement = document.getElementById("hours");
-    const minutesElement = document.getElementById("minutes");
-    const secondsElement = document.getElementById("seconds");
-
-    if (daysElement) daysElement.innerText = days.toString().padStart(2, "0");
-    if (hoursElement)
-      hoursElement.innerText = hours.toString().padStart(2, "0");
-    if (minutesElement)
-      minutesElement.innerText = minutes.toString().padStart(2, "0");
-    if (secondsElement)
-      secondsElement.innerText = seconds.toString().padStart(2, "0");
-  }
-
-  // Update countdown setiap detik
-  setInterval(updateCountdown, 1000);
-
-  // Panggil sekali saat halaman dimuat
-  updateCountdown();
-
-  // 3. Kontrol audio
-  const audioControl = document.getElementById("audioControl");
-  const bgMusic = document.getElementById("bgMusic");
-
-  if (audioControl && bgMusic) {
-    audioControl.addEventListener("click", function () {
-      if (bgMusic.paused) {
-        bgMusic.play();
-        this.innerHTML = '<i class="fas fa-music"></i>';
-      } else {
-        bgMusic.pause();
-        this.innerHTML = '<i class="fas fa-volume-mute"></i>';
-      }
-    });
-  }
 });
