@@ -1,0 +1,5 @@
+{
+  "schedule": "daily",
+  "quality": 70,
+  "aggressive_compression": true
+}
