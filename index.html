@@ -168,18 +168,19 @@
 
                 <!-- Location Section -->
                 <section class="content-section location-section">
-                    <div class="ornament-top"></div>
-                    <h2 class="section-title">Lokasi</h2>
-
-                    <div class="venue-section">
-                        <img src="assets/images/venue.jpg" alt="Lokasi Acara" class="venue-photo">
-                        <div class="map-link">
-                            <a href="https://maps.google.com" target="_blank" class="map-button">
-                                <i class="fas fa-map-marker-alt"></i>
-                                Lihat di Google Maps
-                            </a>
+                    <section class="map-section">
+                        <div class="section-title">Lokasi Acara</div>
+                        <div class="map-container"
+                            style="width:100%; border-radius:10px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d4197.320571181224!2d105.48812459999999!3d-4.9770876!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zNMKwNTgnMzcuNSJTIDEwNcKwMjknMTcuMyJF!5e1!3m2!1sen!2sid!4v1747370434049!5m2!1sen!2sid"
+                                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
-                    </div>
+                        <a href="https://maps.app.goo.gl/cX63RcuWEeqEZJj36" target="_blank" class="maps-button">
+                            <i class="fas fa-map-marker-alt"></i> Buka di Google Maps
+                        </a>
+                    </section>
                 </section>
 
                 <!-- Gallery Section -->
@@ -189,16 +190,28 @@
 
                     <div class="gallery-grid">
                         <div class="gallery-item">
-                            <img src="assets/images/gallery1.jpg" alt="Foto 1">
+                            <img src="assets/images/1.jpg">
                         </div>
                         <div class="gallery-item">
-                            <img src="assets/images/gallery2.jpg" alt="Foto 2">
+                            <img src="assets/images/2.jpg">
                         </div>
                         <div class="gallery-item">
-                            <img src="assets/images/gallery3.jpg" alt="Foto 3">
+                            <img src="assets/images/3.jpg">
                         </div>
                         <div class="gallery-item">
-                            <img src="assets/images/gallery4.jpg" alt="Foto 4">
+                            <img src="assets/images/9.jpg">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="assets/images/5.jpg">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="assets/images/6.jpg">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="assets/images/7.jpg">
+                        </div>
+                        <div class="gallery-item">
+                            <img src="assets/images/8.jpg">
                         </div>
                     </div>
                 </section>
@@ -211,7 +224,11 @@
                     <p class="gift-message">Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Namun, jika
                         memberi adalah ungkapan tanda kasih Anda, Anda dapat memberi kado secara cashless.</p>
 
-                    <div class="bank-accounts">
+                    <button class="gift-btn" id="showGiftBtn">
+                        <i class="fas fa-gift"></i> Kirim Hadiah
+                    </button>
+
+                    <div class="bank-accounts" id="bankAccounts" style="display: none;">
                         <div class="bank-account">
                             <div class="bank-logo">
                                 <img src="assets/images/bca-logo.png" alt="BCA">
@@ -223,6 +240,29 @@
                             </div>
                             <button class="copy-btn" data-clipboard="1234567890">Salin</button>
                         </div>
+
+                        <!-- You can add more bank accounts here -->
+                        <div class="bank-account">
+                            <div class="bank-logo">
+                                <img src="assets/images/bri-logo.png" alt="BRI">
+                            </div>
+                            <div class="account-details">
+                                <h4>Bank BRI</h4>
+                                <p class="account-number">9876543210</p>
+                                <p class="account-name">Dede Andika</p>
+                            </div>
+                            <button class="copy-btn" data-clipboard="9876543210">Salin</button>
+                        </div>
+                    </div>
+
+                    <div class="physical-gift" style="margin-top: 30px; display: none;" id="physicalGift">
+                        <h3>Alamat Pengiriman Kado</h3>
+                        <p class="gift-address">
+                            Dusun 1 Desa Toto Harjo, Kec. Purbolinggo, Kab. Lampung Timur, Lampung
+                        </p>
+                        <button class="copy-btn"
+                            data-clipboard="Dusun 1 Desa Toto Harjo, Kec. Purbolinggo, Kab. Lampung Timur, Lampung">Salin
+                            Alamat</button>
                     </div>
                 </section>
 
@@ -231,31 +271,54 @@
                     <div class="ornament-top"></div>
                     <h2 class="section-title">Ucapan & Doa</h2>
 
-                    <div class="wishes-form">
-                        <form id="wishesForm">
-                            <div class="form-group">
-                                <input type="text" id="name" placeholder="Nama" required>
-                            </div>
-                            <div class="form-group">
-                                <textarea id="message" placeholder="Berikan ucapan dan doa untuk kami..."
-                                    required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <select id="attendance">
-                                    <option value="hadir">Saya akan hadir</option>
-                                    <option value="tidak hadir">Maaf, saya tidak bisa hadir</option>
-                                    <option value="ragu">Saya masih ragu</option>
-                                </select>
-                            </div>
-                            <button type="submit" class="submit-btn">Kirim</button>
-                        </form>
+                    <form id="wishesForm" class="wishes-form">
+                        <div class="form-group">
+                            <input type="text" id="name" placeholder="Nama Anda" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" placeholder="Ucapan & Doa untuk Pengantin" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <select id="attendance" required>
+                                <option value="" disabled selected>Konfirmasi Kehadiran</option>
+                                <option value="hadir">Hadir</option>
+                                <option value="tidak hadir">Tidak Hadir</option>
+                                <option value="ragu">Masih Ragu</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-paper-plane"></i> Kirim Ucapan
+                        </button>
+                    </form>
+
+                    <div class="wishes-stats">
+                        <div class="stat">
+                            <div class="stat-value" id="wishesCount">0</div>
+                            <div class="stat-label">Ucapan</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value" id="attendingCount">0</div>
+                            <div class="stat-label">Hadir</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-value" id="notAttendingCount">0</div>
+                            <div class="stat-label">Tidak Hadir</div>
+                        </div>
                     </div>
 
-                    <div class="wishes-list" id="wishesList">
-                        <!-- Wishes will be dynamically loaded here -->
+                    <div class="wishes-container">
+                        <div class="wishes-loading" id="wishesLoading">
+                            <div class="loading-spinner"></div>
+                            <p>Memuat ucapan...</p>
+                        </div>
+                        <div id="wishesList" class="wishes-list">
+                            <!-- Wishes will be loaded here via JavaScript -->
+                        </div>
+                        <button id="loadMoreWishes" class="load-more-btn">
+                            Lihat Ucapan Lainnya
+                        </button>
                     </div>
                 </section>
-
                 <!-- Closing Section -->
                 <section class="content-section closing-section">
                     <div class="ornament-top"></div>
