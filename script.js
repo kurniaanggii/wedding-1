@@ -295,12 +295,9 @@ document.addEventListener("DOMContentLoaded", function () {
   // Pindahkan kode Google Sheets integration ke dalam event listener DOMContentLoaded utama
   // untuk menghindari konflik duplikasi event listener
 
-  // TAMBAHKAN URL Google Apps Script yang benar dengan CORS support
+  // Ganti URL dengan URL Web App Anda
   const GOOGLE_APPS_SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbzxtIETlFzrBZE6je1kMFLwZdUDIOYoY6zX7cktvJrnK-0jUTBpZLIZdJXSdhMoTDCsZg/exec";
-
-  // Expose loadWishes function to global scope agar bisa dipanggil oleh tombol open invitation
-  window.loadWishes = loadWishes;
+    "https://script.google.com/macros/s/AKfycby_3P4FBSvbIU9RMEFEqW6wc7Cnq9c-EicffO1MTsPJwUOw3y9RrLfdq8Udt5a8NFQc/exec";
 
   const wishesForm = document.getElementById("wishesForm");
   const wishesList = document.getElementById("wishesList");
@@ -326,30 +323,19 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Load wishes from Google Sheets
+  // Fungsi untuk mengambil data dari Google Sheets
   function loadWishes() {
     if (!wishesList || !wishesLoading) {
       console.log("Missing elements: wishesList or wishesLoading");
-      return;
+      return Promise.reject("Missing UI elements");
     }
 
     wishesLoading.style.display = "flex";
 
     console.log("Fetching wishes from:", GOOGLE_APPS_SCRIPT_URL);
 
-    fetch(GOOGLE_APPS_SCRIPT_URL, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((response) => {
-        console.log("Fetch response received:", response);
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-      })
+    return fetch(GOOGLE_APPS_SCRIPT_URL)
+      .then((response) => response.json())
       .then((data) => {
         console.log("Data received:", data);
         wishesData = data.data || [];
@@ -361,8 +347,13 @@ document.addEventListener("DOMContentLoaded", function () {
         let notAttending = 0;
 
         wishesData.forEach((wish) => {
-          if (wish.Attendance === "hadir") attending++;
-          if (wish.Attendance === "tidak hadir") notAttending++;
+          if (wish.Attendance === "Hadir" || wish.Attendance === "hadir")
+            attending++;
+          if (
+            wish.Attendance === "Tidak Hadir" ||
+            wish.Attendance === "tidak hadir"
+          )
+            notAttending++;
         });
 
         if (attendingCount) attendingCount.textContent = attending;
@@ -377,12 +368,15 @@ document.addEventListener("DOMContentLoaded", function () {
         displayWishes();
 
         wishesLoading.style.display = "none";
+
+        return wishesData;
       })
       .catch((error) => {
         console.error("Error loading wishes:", error);
         wishesLoading.style.display = "none";
         wishesList.innerHTML =
           '<div class="error-message">Gagal memuat ucapan. Silakan coba lagi nanti.</div>';
+        throw error;
       });
   }
 
@@ -403,13 +397,20 @@ document.addEventListener("DOMContentLoaded", function () {
       let attendanceClass = "";
       let attendanceText = "Belum Konfirmasi";
 
-      if (wish.Attendance === "hadir") {
+      if (wish.Attendance === "Hadir" || wish.Attendance === "hadir") {
         attendanceClass = "hadir";
         attendanceText = "Hadir";
-      } else if (wish.Attendance === "tidak hadir") {
+      } else if (
+        wish.Attendance === "Tidak Hadir" ||
+        wish.Attendance === "tidak hadir"
+      ) {
         attendanceClass = "tidak-hadir";
         attendanceText = "Tidak Hadir";
-      } else if (wish.Attendance === "ragu") {
+      } else if (
+        wish.Attendance === "Ragu-ragu" ||
+        wish.Attendance === "ragu" ||
+        wish.Attendance === "Masih Ragu"
+      ) {
         attendanceClass = "ragu";
         attendanceText = "Masih Ragu";
       }
@@ -437,6 +438,9 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  // Expose loadWishes function to global scope agar bisa dipanggil oleh tombol open invitation
+  window.loadWishes = loadWishes;
+
   // Submit wish to Google Sheets
   if (wishesForm) {
     wishesForm.addEventListener("submit", function (e) {
@@ -456,18 +460,18 @@ document.addEventListener("DOMContentLoaded", function () {
       const message = messageInput.value;
       const attendance = attendanceInput.value;
 
+      const wishData = {
+        name: name,
+        message: message,
+        attendance: attendance,
+      };
+
       const submitBtn = wishesForm.querySelector(".submit-btn");
       if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.innerHTML =
           '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
       }
-
-      const wishData = {
-        name: name,
-        message: message,
-        attendance: attendance,
-      };
 
       console.log("Sending wish data:", wishData);
 
@@ -478,65 +482,53 @@ document.addEventListener("DOMContentLoaded", function () {
         headers: {
           "Content-Type": "application/json",
         },
-        mode: "cors", // Penting
-        redirect: "follow", // Ikuti redirect jika ada
-        credentials: "omit", // Jangan kirim cookie
+        mode: "no-cors", // Supaya request bisa lewat tanpa CORS error
       })
-        .then((response) => {
-          console.log("POST response status:", response.status);
-          if (!response.ok) {
-            return response.text().then((text) => {
-              console.error("Error response:", text);
-              throw new Error(`HTTP error! Status: ${response.status}`);
-            });
+        .then(() => {
+          console.log("Request sent successfully (no-cors mode)");
+
+          // Add new wish to the top of the list
+          const timestamp = new Date();
+          const newWish = {
+            Timestamp: timestamp,
+            Name: name,
+            Message: message,
+            Attendance: attendance,
+          };
+
+          wishesData.unshift(newWish);
+
+          // Update stats
+          if (wishesCount)
+            wishesCount.textContent =
+              parseInt(wishesCount.textContent || "0") + 1;
+          if (
+            (attendance === "hadir" || attendance === "Hadir") &&
+            attendingCount
+          ) {
+            attendingCount.textContent =
+              parseInt(attendingCount.textContent || "0") + 1;
           }
-          return response.text().then((text) => {
-            console.log("Raw response text:", text);
-            return JSON.parse(text);
-          });
-        })
-        .then((data) => {
-          console.log("POST data received:", data);
-          if (data.result === "success") {
-            // Add new wish to the top of the list
-            const timestamp = new Date();
-            const newWish = {
-              Timestamp: timestamp,
-              Name: name,
-              Message: message,
-              Attendance: attendance,
-            };
-
-            wishesData.unshift(newWish);
-
-            // Update stats
-            if (wishesCount)
-              wishesCount.textContent =
-                parseInt(wishesCount.textContent || "0") + 1;
-            if (attendance === "hadir" && attendingCount) {
-              attendingCount.textContent =
-                parseInt(attendingCount.textContent || "0") + 1;
-            }
-            if (attendance === "tidak hadir" && notAttendingCount) {
-              notAttendingCount.textContent =
-                parseInt(notAttendingCount.textContent || "0") + 1;
-            }
-
-            // Clear the form
-            wishesForm.reset();
-
-            // Refresh the displayed wishes
-            if (wishesList) {
-              wishesList.innerHTML = "";
-              displayedWishes = 0;
-              displayWishes();
-            }
-
-            // Show success message
-            alert("Ucapan berhasil terkirim. Terima kasih!");
-          } else {
-            alert("Gagal mengirim ucapan. Silakan coba lagi.");
+          if (
+            (attendance === "tidak hadir" || attendance === "Tidak Hadir") &&
+            notAttendingCount
+          ) {
+            notAttendingCount.textContent =
+              parseInt(notAttendingCount.textContent || "0") + 1;
           }
+
+          // Clear the form
+          wishesForm.reset();
+
+          // Refresh the displayed wishes
+          if (wishesList) {
+            wishesList.innerHTML = "";
+            displayedWishes = 0;
+            displayWishes();
+          }
+
+          // Show success message
+          alert("Ucapan berhasil terkirim. Terima kasih!");
         })
         .catch((error) => {
           console.error("Error sending wish:", error);
@@ -556,31 +548,4 @@ document.addEventListener("DOMContentLoaded", function () {
   if (loadMoreWishes) {
     loadMoreWishes.addEventListener("click", displayWishes);
   }
-
-  // Test connection to Google Apps Script
-  console.log("Testing connection to Google Apps Script...");
-  fetch(GOOGLE_APPS_SCRIPT_URL, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-    .then((response) => {
-      console.log("Response status:", response.status);
-      return response.text();
-    })
-    .then((text) => {
-      console.log("Response text:", text);
-      try {
-        const json = JSON.parse(text);
-        console.log("Parsed JSON:", json);
-      } catch (e) {
-        console.error("Failed to parse JSON:", e);
-      }
-    })
-    .catch((error) => {
-      console.error("Fetch error:", error);
-    });
 });
-
-// HAPUS test connection di luar event listener karena GOOGLE_APPS_SCRIPT_URL tidak terdefinisi di sini
